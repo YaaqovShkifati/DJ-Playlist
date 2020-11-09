@@ -3,8 +3,17 @@ package djplaylist;
 import java.io.IOException;
 import java.io.PrintStream;
 
+/**
+ * The Binary Search Tree class.
+ */
 public class BinarySearchTree {
 
+     /**
+        * The constructor initializes the data.
+        * @param songName Song title.
+        * @param artistName Song Artist Name.
+        * @param Streams The number of plays.
+        */
     public class Song {
 
         private String songName, artistName, streams;
@@ -24,7 +33,11 @@ public class BinarySearchTree {
             reapSong = 1;
             reapSong2 = 1;
         }
-
+        
+        /**
+         * The avgStreamsCount method calculates the average plays for each song.
+         * @param songPlays The number of plays.
+         */
         public void avgStreamsCount(int songPlays) {
 
             totalPlay += songPlays;
@@ -33,14 +46,23 @@ public class BinarySearchTree {
             avgStreams = (totalPlay + Integer.parseInt(streams)) / reapSong;
 
         }
-
+        
+         /**
+         * The averageArtist method calculates the average plays for each artist.
+         * @param Art The number of streams of the song Artist.
+         */
         public void averageArtist(Song Art) {
             totalArt += Integer.parseInt(Art.streams);
             reapSong2++;
             avgArtist = (totalArt + Integer.parseInt(streams)) / reapSong2;
         }
 
-        @Override
+         @Override
+        /**
+         * The toString method returns the value given to it in string format.
+         * Just like in mathematics, function can only return one value so does 
+         * the data. Therefore, one can view this method as a piecewise function. 
+         */
         public String toString() {
 
             String outPut1 = "Song Title: " + this.songName + " \n" + "Average Song Plays: " + avgStreams + "\n"
@@ -65,18 +87,28 @@ public class BinarySearchTree {
 
         }
 
-    }
+    } //End of Song class.
 
     Song root;
      public PrintStream output;
      public PrintStream output2;
 
+ /**
+ * The BinarySearchTree constructor instantiates the two output files.
+ * @throws IOException 
+ */
     public BinarySearchTree() throws IOException{
         root = null;
           output= new PrintStream("DjPlaylist.txt");
           output2= new PrintStream("SubSet.txt");
     }
-
+ /**
+     * The insert method stores the data into the binary search tree.
+     * @param songName Song title.
+     * @param artistName Song Artist Name.
+     * @param Streams The number of plays.
+     * @throws IOException 
+     */
     public void insert(String songName, String artistName, String Streams) throws IOException {
 
         Song songTitle = new Song(songName, artistName, Streams);
@@ -122,7 +154,14 @@ public class BinarySearchTree {
         }
     }
 
- 
+  /**
+  * The SubSet method returns the range for the given domain.
+  * @param root the node
+  * @param song1 The starting Song
+  * @param song2 The Ending Song.
+  * @return node.
+  * @throws IOException 
+  */
     public Song subSet(Song root, String song1, String song2) throws IOException {
 
         if (root == null) {
@@ -146,6 +185,11 @@ public class BinarySearchTree {
         subSet(root, song1, song2);
     }
 
+      /**
+     * Using a recursive method to prints the binary tree  to a text file in preOrder traversal.
+     * @param current The current Node.
+     * @throws IOException 
+     */
     public void preOrder(Song current) throws IOException {
 
         if (current != null) {
@@ -159,4 +203,4 @@ public class BinarySearchTree {
         }
     }
 
-}
+}//End of BinarySearchTree class.
