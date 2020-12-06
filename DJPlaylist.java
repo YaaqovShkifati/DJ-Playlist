@@ -4,6 +4,7 @@
  * @verison 1.0
  */
 package djplaylist;
+*
 
 import java.util.*;
 import java.io.*;
